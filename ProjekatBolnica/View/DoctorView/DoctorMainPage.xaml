@@ -1,0 +1,420 @@
+﻿<Window x:Class="ProjekatBolnica.DoctorView.DoctorMainPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.DoctorView"
+        xmlns:cmd="clr-namespace:ProjekatBolnica.DoctorView.DoctorCommands"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:p = "clr-namespace:ProjekatBolnica.Properties"
+        mc:Ignorable="d"
+        Title="Lekar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" MinHeight="500">
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="cmd:CustomCommands.tabCommand" CommandParameter="{Binding ElementName=accountTabButton}"></KeyBinding>
+        <KeyBinding Key="F2" Command="cmd:CustomCommands.tabCommand" CommandParameter="{Binding ElementName=patientsTabButton}"></KeyBinding>
+        <KeyBinding Key="F3" Command="cmd:CustomCommands.tabCommand" CommandParameter="{Binding ElementName=calendarTabButton}"></KeyBinding>
+        <KeyBinding Key="F4" Command="cmd:CustomCommands.tabCommand" CommandParameter="{Binding ElementName=medicineTabButton}"></KeyBinding>
+        <KeyBinding Key="F5" Command="cmd:CustomCommands.tabCommand" CommandParameter="{Binding ElementName=reportTabButton}"></KeyBinding>
+    </Window.InputBindings>
+    <DockPanel>
+        <Grid x:Name="menuGrid" Width="300" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="DarkBlue" DockPanel.Dock="Left">
+            <ListView x:Name="menuList" VerticalAlignment="Center" Background="DarkBlue">
+                <ListViewItem x:Name="accountTab" HorizontalContentAlignment="Stretch" Focusable="False" Background="CornflowerBlue">
+                    <Grid Background="Transparent">
+                        <Button x:Name="accountTabButton" HorizontalAlignment="Center" Visibility="Hidden" Click="tabButton_Click"></Button>
+                        <Image Source="icons\nurse.png" Height="75" Margin="10" HorizontalAlignment="Left"/>
+                        <Label Foreground="White" Content="{x:Static p:Resources.Account}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Foreground="White" Content="F1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem x:Name="patientsTab" HorizontalContentAlignment="Stretch" Focusable="False">
+                    <Grid Background="Transparent">
+                        <Button x:Name="patientsTabButton" HorizontalAlignment="Center" Visibility="Hidden" Click="tabButton_Click"></Button>
+                        <Image Source="icons\medical-records.png" Height="75" Margin="10" HorizontalAlignment="Left"/>
+                        <Label Foreground="White" Content="{x:Static p:Resources.Patients}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Foreground="White" Content="F2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem x:Name="calendarTab" HorizontalContentAlignment="Stretch" Focusable="False">
+                    <Grid Background="Transparent">
+                        <Button x:Name="calendarTabButton" HorizontalAlignment="Center" Visibility="Hidden" Click="tabButton_Click"></Button>
+                        <Image Source="icons\calendar.png" Height="75" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <Label Foreground="White" Content="{x:Static p:Resources.Schedule}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Foreground="White" Content="F3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem x:Name="medicineTab" HorizontalContentAlignment="Stretch" Focusable="False">
+                    <Grid Background="Transparent">
+                        <Button x:Name="medicineTabButton" HorizontalAlignment="Center" Visibility="Hidden" Click="tabButton_Click"></Button>
+                        <Image Source="icons\medicine.png" Height="75" Margin="10" HorizontalAlignment="Left"/>
+                        <Label Foreground="White" Content="{x:Static p:Resources.Medicine}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Foreground="White" Content="F4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem x:Name="reportTab" HorizontalContentAlignment="Stretch" Focusable="False">
+                    <Grid Background="Transparent">
+                        <Button x:Name="reportTabButton" HorizontalAlignment="Center" Visibility="Hidden" Click="tabButton_Click"></Button>
+                        <Image Source="icons\medical-report.png" Height="75" Margin="10" HorizontalAlignment="Left"/>
+                        <Label Foreground="White" Content="{x:Static p:Resources.Report}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Foreground="White" Content="F5" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                    </Grid>
+                </ListViewItem>
+            </ListView>
+        </Grid>
+        <Grid x:Name="mainGrid" DockPanel.Dock="Right" Background="White">
+            <Grid x:Name="accountTabGrid" Visibility="Visible">
+                <Grid x:Name="accountInfo" Visibility="Visible">
+                    <StackPanel Margin="50,50,50,50">
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Button Content="{x:Static p:Resources.Settings}" Width="300" Height="30" Margin="0,0,0,30" Click="displayAccountSettings"/>
+                                <Button Content="{x:Static p:Resources.VacationRequest}" Width="300" Height="30" Margin="0,0,0,30" Click="openVacationRequestDialog" />
+                                <Button Content="{x:Static p:Resources.LogOut}" Width="300" Height="30" Click="logOut"/>
+                            </StackPanel>
+                            <StackPanel x:Name="basicInformation" HorizontalAlignment="Right" Background="AliceBlue" Width="500">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label FontSize="30" Content="{Binding LoggedInDoctor.Name}"/>
+                                    <Label FontSize="30" Content="{Binding LoggedInDoctor.Surname}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <Label FontSize="20" Content="{x:Static p:Resources.DOB2}"/>
+                                        <Label FontSize="20" Content="JMBG:"/>
+                                        <Label FontSize="20" Content="E-mail:"/>
+                                        <Label FontSize="20" Content="{x:Static p:Resources.PhoneNumber2}"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <Label FontSize="20" Content="{Binding Path=LoggedInDoctor.DateOfBirth}"/>
+                                        <Label FontSize="20" Content="{Binding Path=LoggedInDoctor.PersonalIDnumber}"/>
+                                        <Label FontSize="20" Content="{Binding Path=LoggedInDoctor.Email}"/>
+                                        <Label FontSize="20" Content="{Binding Path=LoggedInDoctor.Telephone}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,50,0,0">
+                            <StackPanel>
+                                <Label x:Name="notificationsLabel" FontSize="20" Background="AliceBlue" Content="{x:Static p:Resources.Notifications}"/>
+                                <DataGrid x:Name="notificationsDataGrid" ItemsSource="{Binding Path=Notifications}" CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False"  HorizontalScrollBarVisibility="Disabled">
+                                    <DataGrid.Resources>
+                                        <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="Focusable" Value="False"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Width="100" Click="openNotification" Content="{x:Static p:Resources.Open}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.DateAndTime}" Binding="{Binding Date}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Sender}" Binding="{Binding Sender}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Text}" Binding="{Binding Description}" Width="500"/>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Click="deleteNotification" Width="100" Content="{x:Static p:Resources.Delete}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="accountSettings" Visibility="Hidden">
+                    <StackPanel Margin="50,50,50,50" Width="650">
+                        <Border x:Name="generalSettings" BorderThickness="1" BorderBrush="Black" Background="White">
+                            <StackPanel>
+                                <Label x:Name="generalSettingsLabel" FontSize="30" Content="{x:Static p:Resources.Settings}" Background="AliceBlue"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Margin="10">
+                                        <Label FontSize="20" Content="{x:Static p:Resources.Name}"/>
+                                        <TextBox x:Name="nameSettingTextBox" Height="30" Width="300" Text="{Binding Path=LoggedInDoctor.Name, Mode=OneWay}" TextChanged="settingsChanged"/>
+                                        <Label FontSize="20" Content="{x:Static p:Resources.LastName}" />
+                                        <TextBox x:Name="surnameSettingTextBox" Height="30" Width="300" Text="{Binding Path=LoggedInDoctor.Surname, Mode=OneWay}" TextChanged="settingsChanged"/>
+                                        <Label FontSize="20" Content="E-mail"/>
+                                        <TextBox x:Name="emailSettingTextBox" Height="30" Width="300" Text="{Binding Path=LoggedInDoctor.Email, Mode=OneWay}" TextChanged="settingsChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10">
+                                        <Label FontSize="20" Content="{x:Static p:Resources.PhoneNumber}"/>
+                                        <TextBox x:Name="telephoneSettingTextBox" Height="30" Width="300" Text="{Binding Path=LoggedInDoctor.Telephone, Mode=OneWay}" TextChanged="settingsChanged"/>
+                                        <Label FontSize="20" Content="{x:Static p:Resources.Theme}"/>
+                                        <ComboBox x:Name="themeComboBox" Height="30" PreviewKeyDown="openComboBox" SelectionChanged="changeTheme">
+                                            <ComboBoxItem Content="{x:Static p:Resources.Light}"/>
+                                            <ComboBoxItem Content="{x:Static p:Resources.Dark}"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Button x:Name="saveChangesButton" Content="{x:Static p:Resources.SaveChanges}" Width="300" Height="30" HorizontalAlignment="Left" Margin="10" Click="saveSettings"/>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="passwordSettings" BorderThickness="1" BorderBrush="Black" Margin="0,20,0,0" Background="White">
+                            <StackPanel>
+                                <Label x:Name="passwordSettingsLabel" FontSize="30" Content="{x:Static p:Resources.ChangePass1}" Background="AliceBlue"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Margin="10">
+                                        <Label FontSize="20" Content="{x:Static p:Resources.NewPass}"/>
+                                        <PasswordBox x:Name="newPassPasswordBox" Width="300" Height="30" PasswordChanged="passChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10">
+                                        <Label FontSize="20" Content="{x:Static p:Resources.RepeatPass}"/>
+                                        <PasswordBox x:Name="repeatPassPasswordBox" Width="300" Height="30" PasswordChanged="passChanged"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Button x:Name="changePassButton" Content="{x:Static p:Resources.ChangePass}" Width="300" Height="30" HorizontalAlignment="Left" Margin="10" IsEnabled="False" Click="changePassword"/>
+                            </StackPanel>
+                        </Border>
+                        <Button Content="{x:Static p:Resources.BackToAcc}" Width="300" Height="30" HorizontalAlignment="Left" Margin="0,20,0,0" Click="displayAccountInfo"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid x:Name="patientsTabGrid" Visibility="Hidden">
+                <Grid x:Name="patientsList" Visibility="Visible">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="50,50,50,50">
+                        <StackPanel>
+                            <StackPanel x:Name="patientSearchHeader" Orientation="Horizontal" Background="AliceBlue">
+                                <Label FontSize="20" Content="{x:Static p:Resources.PatientSearch}"/>
+                                <TextBox x:Name="searchPatientsQuery" Height="30" Width="300"/>
+                                <Button Height="30" Width="50" Click="filterPatients">
+                                    <Image Source="icons\search.png"/>
+                                </Button>
+                            </StackPanel>
+                            <DataGrid ItemsSource="{Binding Path=Patients}" CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False"  HorizontalScrollBarVisibility="Disabled">
+                                <DataGrid.Resources>
+                                    <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="Focusable" Value="False"/>
+                                    </Style>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Width="100" Click="openPatient" Content="{x:Static p:Resources.Open}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Name}" Binding="{Binding Name}" Width="*"/>
+                                    <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.LastName}" Binding="{Binding Surname}" Width="*"/>
+                                    <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Gender}" Binding="{Binding Gender}" Width="*"/>
+                                    <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="Birthday" Binding="{Binding DateOfBirth}" Width="*"/>
+                                    <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="E-mail" Binding="{Binding Email}" Width="*"/>
+                                    <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="JMBG" Binding="{Binding PersonalIDnumber}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Grid x:Name="patientMedicalRecord" Visibility="Hidden">
+                    <StackPanel Margin="50,50,50,0">
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Left">
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Button Content="{x:Static p:Resources.ScheduleAppointment}" Width="300" Height="30" Margin="0,0,0,30" Click="openAppointmentDialog"/>
+                                    <Button x:Name="surgeryButton" Content="{x:Static p:Resources.ScheduleSurgery}" Width="300" Height="30" Margin="0,0,0,30" Click="openOperationDialog" />
+                                    <Button Content="{x:Static p:Resources.SpecialistReferral}" Width="300" Height="30" Margin="0,0,0,30" Click="openSpecialistRefferalDialog"/>
+                                    <Button Content="{x:Static p:Resources.StationaryTreatment}" Width="300" Height="30" Margin="0,0,0,30" Click="openStationaryTreatmentDialog"/>
+                                    <Button Content="{x:Static p:Resources.GenerateReport}" Width="300" Height="30" Margin="0,0,0,30" Click="selectPatientForReport"/>
+                                    <Button Content="{x:Static p:Resources.BackToPatients}" Width="300" Height="30" Click="displayPatientsList"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel x:Name="patientInfo" HorizontalAlignment="Right" VerticalAlignment="Center" Background="AliceBlue">
+                                <StackPanel>
+                                    <Label FontSize="30" Content="{x:Static p:Resources.BasicInformation}" VerticalAlignment="Center"/>
+                                    <StackPanel Orientation="Horizontal" Width="500">
+                                        <StackPanel>
+                                            <Label FontSize="20" Content="{x:Static p:Resources.Name2}"/>
+                                            <Label FontSize="20" Content="{x:Static p:Resources.LastName2}"/>
+                                            <Label FontSize="20">JMBG:</Label>
+                                            <Label FontSize="20" Content="{x:Static p:Resources.Gender2}"/>
+                                            <Label FontSize="20" Content="{x:Static p:Resources.DOB2}"/>
+                                            <Label FontSize="20">E-mail:</Label>
+                                            <Label FontSize="20" Content="{x:Static p:Resources.PhoneNumber2}"/>
+                                        </StackPanel>
+                                        <StackPanel DockPanel.Dock="Right">
+                                            <StackPanel.Resources>
+                                                <Style TargetType="{x:Type Label}">
+                                                    <Setter Property="FontSize" Value="20"/>
+                                                </Style>
+                                            </StackPanel.Resources>
+                                            <Label Content="{Binding Path=SelectedPatient.Name,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label Content="{Binding Path=SelectedPatient.Surname,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label Content="{Binding Path=SelectedPatient.PersonalIDnumber,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label Content="{Binding Path=SelectedPatient.Gender,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label Content="{Binding Path=SelectedPatient.DateOfBirth,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label Content="{Binding Path=SelectedPatient.Email,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Label Content="{Binding Path=SelectedPatient.Telephone,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Label x:Name="pastMedicalRecordsLabel" FontSize="20" Content="{x:Static p:Resources.PastRecords}" Background="AliceBlue" Margin="0,20,0,0"/>
+                        <ScrollViewer>
+                            <StackPanel Focusable="True">
+                                <TextBox x:Name="pastMedicalRecords" Height="200" IsReadOnly="True" Background="White"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid x:Name="calendarTabGrid" Visibility="Hidden">
+                <StackPanel Margin="50,50,50,50">
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <StackPanel>
+                            <StackPanel x:Name="scheduleHeader" Orientation="Horizontal" Background="AliceBlue">
+                                <Label Content="{x:Static p:Resources.Display}" FontSize="20"/>
+                                <ComboBox x:Name="activityPeriodSelection" Height="30" Width="300" PreviewKeyDown="openComboBox" SelectionChanged="activityViewSlecetionChanged">
+                                    <ComboBoxItem x:Name="allView" Content="{x:Static p:Resources.All}"/>
+                                    <ComboBoxItem x:Name="monthlyView" Content="{x:Static p:Resources.Monthly}"/>
+                                    <ComboBoxItem x:Name="dailyView" Content="{x:Static p:Resources.Daily}"/>
+                                </ComboBox>
+                                <xctk:DateTimePicker x:Name="activityViewPicker" Width="300" Height="30" Margin="20,0,0,0" IsEnabled="False" Background="White"/>
+                                <Button Width="100" Height="30" Margin="20,0,0,0" Content="{x:Static p:Resources.Show}" Click="filterActivities"/>
+                            </StackPanel>
+                            <StackPanel x:Name="appointmentsPanel" Background="AliceBlue">
+                                <Label Content="{x:Static p:Resources.Appointments}" FontSize="20"/>
+                                <DataGrid x:Name="appointmentList" ItemsSource="{Binding Path=Appointments}" CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False"  HorizontalScrollBarVisibility="Disabled">
+                                    <DataGrid.Resources>
+                                        <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="Focusable" Value="False"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Click="openAppointment" Width="100" Content="{x:Static p:Resources.Open}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.DateAndTime}" Binding="{Binding DateAndTime}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Patient}" Binding="{Binding Patient}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Office}" Binding="{Binding Room}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Duration}" Binding="{Binding Duration}" Width="*"/>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Click="deleteAppointment" Width="100" Content="{x:Static p:Resources.Delete}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            <StackPanel x:Name="operationsPanel" Background="AliceBlue">
+                                <Label Content="{x:Static p:Resources.Operations}" FontSize="20"/>
+                                <DataGrid x:Name="operationList" ItemsSource="{Binding Path=Operations}" CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False"  HorizontalScrollBarVisibility="Disabled">
+                                    <DataGrid.Resources>
+                                        <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="Focusable" Value="False"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Click="openOperation" Width="100" Content="{x:Static p:Resources.Open}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.DateAndTime}" Binding="{Binding DateAndTime}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Patient}" Binding="{Binding Patient}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.OperationRoom}" Binding="{Binding Room}" Width="*"/>
+                                        <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.Duration}" Binding="{Binding Duration}" Width="*"/>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Width="100" Click="deleteOperation" Content="{x:Static p:Resources.Delete}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="medicineTabGrid" Visibility="Hidden">
+                <StackPanel Margin="50,50,50,50">
+                    <StackPanel x:Name="medicineSearchHeader" Orientation="Horizontal" Background="AliceBlue">
+                        <Label Content="{x:Static p:Resources.SearchMedicine}" FontSize="20"/>
+                        <TextBox x:Name="searchMedicineQuery" Height="30" Width="300"/>
+                        <Button Height="30" Width="50" Click="filterMedicine">
+                            <Image Source="icons\search.png"/>
+                        </Button>
+                    </StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=ApprovedMedicine}" CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Height="300" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Resources>
+                            <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="openMedicineDetails" Content="{x:Static p:Resources.Details}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.NazivLeka}" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="ExpiryDate" Binding="{Binding ExpiryDate}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel x:Name="unapprovedMedicineHeader" Orientation="Horizontal" Background="AliceBlue" Margin="0,20,0,0">
+                        <Label Foreground="Black" FontSize="20" Content="{x:Static p:Resources.UnapprovedMedicine}"/>
+                    </StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=UnapprovedMedicine}" CanUserAddRows="False" SelectionMode="Single" IsReadOnly="False" AutoGenerateColumns="False" Height="200"  HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Resources>
+                            <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="openUnapprovedMedicine" Content="{x:Static p:Resources.Open}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="{x:Static p:Resources.NazivLeka}" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn CellStyle="{StaticResource CellStyle}" Header="Expiry date" Binding="{Binding ExpiryDate}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="reportTabGrid" Visibility="Hidden">
+                <StackPanel Margin="50,50,50,50">
+                    <StackPanel x:Name="reportHeader" Background="AliceBlue" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20" Content="{x:Static p:Resources.Patient2}"/>
+                            <ComboBox x:Name="patientForReport" Width="300" ItemsSource="{Binding Path=Patients}"  Height="30" PreviewKeyDown="openComboBox"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20"  Width="83" Content="{x:Static p:Resources.From}"/>
+                            <DatePicker x:Name="recordStartDate" Width="300" Height="30" PreviewKeyDown="openCalendar" Background="White" SelectedDateChanged="reportDateChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20" Content="{x:Static p:Resources.Until}" Width="83"/>
+                            <DatePicker x:Name="recordEndDate"  Width="300" Height="30" PreviewKeyDown="openCalendar" Background="White" SelectedDateChanged="reportDateChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button x:Name="showReport" Content="{x:Static p:Resources.Show}" HorizontalAlignment="Left" Width="300" Height="30" Margin="83,5,0,0" Click="showReportRecords" IsEnabled="False"/>
+                    <Border Margin="0,30,0,0" BorderThickness="1" BorderBrush="Black">
+                        <ScrollViewer Height="350">
+                            <StackPanel x:Name="reportTextBlock" Focusable="True" Background="White">
+                                <TextBlock x:Name="reportText"  TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

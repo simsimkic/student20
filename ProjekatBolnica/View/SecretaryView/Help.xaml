@@ -1,0 +1,17 @@
+﻿<Window x:Class="ProjekatBolnica.SecretaryView.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.SecretaryView"
+        mc:Ignorable="d"
+        Title="Help" Background="Beige"  Height="450" Width="800">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Image x:Name="imageHelp" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="55" Source="SecretaryPictures/help.png"/>
+            <TextBlock Margin="30,0,0,0" TextWrapping="Wrap" FontWeight="Bold" FontSize="50" Text="Help" Foreground="#FFE5B9B9" FontStyle="Italic"></TextBlock>
+        </StackPanel>
+        <TextBox Height="275" IsEnabled="False" Width="750" Background="Beige" HorizontalAlignment="Center" FontSize="15" TextWrapping="Wrap" Margin="0,0,-0.4,0" 
+             Text="   Items in the menu bar on the home page: Add, View, Help.&#xA;   If you select Add, you will be able to add new patient, guest patient, operation, appointment and hospital stay. If you select View, you will be able to see lists of all patient, operation, appointment and hospital stay. Also, you will be able to see the data shown through the chart. By selecting the report item, you will be able to generate a report on appointments or operations.&#xA;   The toolbar is located below the menu bar. The toolbar contains patient additions, appointment additions, operation additions and hospital stay additions. Also, the toolbar contains an overview of the data. If you choose to view a list, you will also be able to edit a list or search for a list. &#xA;   You can see the home page section My account. There you can find options: send feedback, edit account and log out. If you choose edit account, you will be able to change your e-mail, password, address and username. The data overview section is located on the right side of the home page. There you can find options for generating reports and graphics.&#xD;&#xA;   We hope we helped you!"/>
+    </StackPanel>
+</Window>

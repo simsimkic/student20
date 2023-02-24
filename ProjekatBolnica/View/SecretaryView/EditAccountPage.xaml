@@ -1,0 +1,43 @@
+﻿<Window x:Class="ProjekatBolnica.SecretaryView.EditAccountPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.SecretaryView"
+        mc:Ignorable="d"
+        Title="Edit Account Page" Height="650" Width="1080" Background="Beige" WindowStartupLocation="CenterScreen" >
+    <DockPanel Background="Beige">
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Background="Beige" Width="516" VerticalAlignment="Top">
+            <Label Content="Country (Name and code):" FontSize="15" Margin="30, 30, 30, 2"></Label>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="inputCountry" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"></TextBox>
+                <TextBox Name="inputCountryCode" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"></TextBox>
+            </StackPanel>
+            <Label Content="City (Name and postalCode):" FontSize="15" Margin="30, 30, 30, 2"></Label>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="inputCity" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"></TextBox>
+                <TextBox Name="inputCityPostalCode" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"></TextBox>
+            </StackPanel>
+            <Label Content="Address (Street and number):" FontSize="15" Margin="30, 30, 30, 2"></Label>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="inputAdrress" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"></TextBox>
+                <TextBox Name="inputAdrressNumber" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"></TextBox>
+            </StackPanel>
+            <Label Content="Telephone:" FontSize="15" Margin="30, 30, 30, 2"/>
+            <TextBox Name="inputTelephone" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="455" FontSize="18"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Right" Background="Beige" Margin="0,0,0,10.4" Width="515">
+            <Label Content="E-mail:" FontSize="15" Margin="30, 30, 30, 2"/>
+            <TextBox Name="inputEmail" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="455" FontSize="18"/>
+            <Label Content="Username:" FontSize="15" Margin="30, 30, 30, 2"/>
+            <TextBox Name="inputUsername" Margin="30, 2, 30, 10" Height="33" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="455" FontSize="18"/>
+            <Label Content="Password (min 6 characters):" FontSize="15" Margin="30, 30, 30, 2"/>
+            <PasswordBox Name="inputPassword" Margin="30, 2, 30, 10" Height="33" PasswordChar="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="455" FontSize="18"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,112,0,0">
+                <Button Background="White" Width="68" Margin="30,50,30,5" Height="38" Content="Cancel" Click="clickCancel"/>
+                <Button Background="White" Width="68" Margin="30,50,30,5" Height="38" Content="Confirm" Click="clickConfirm"/>
+            </StackPanel>
+        </StackPanel>
+
+    </DockPanel>
+</Window>

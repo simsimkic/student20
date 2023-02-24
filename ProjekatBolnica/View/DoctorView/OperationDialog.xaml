@@ -1,0 +1,32 @@
+﻿<Window x:Class="ProjekatBolnica.View.DoctorView.OperationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.View.DoctorView"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:p = "clr-namespace:ProjekatBolnica.Properties"
+        mc:Ignorable="d"
+        Title="OperationDialog" Height="550" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="dialogGrid">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="300">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Label FontSize="30" Content="{Binding Path=SelectedPatient.Name}"/>
+                <Label FontSize="30" Content="{Binding Path=SelectedPatient.Surname}"/>
+            </StackPanel>
+            <Label FontSize="20" HorizontalAlignment="Center" Content="{Binding SelectedPatient.Id}"/>
+            <Label FontSize="20" Content="{x:Static p:Resources.Specialist}"/>
+            <ComboBox x:Name="doctorComboBox" Height="30" PreviewKeyDown="openComboBox" ItemsSource="{Binding Path=Specialists}" SelectionChanged="getAvailableTerms"/>
+            <Label FontSize="20" Content="{x:Static p:Resources.OperationRoom}"/>
+            <ComboBox x:Name="operationRoomComboBox" Height="30" PreviewKeyDown="openComboBox" ItemsSource="{Binding Path=OperationRooms}" SelectionChanged="getAvailableTerms"/>
+            <Label FontSize="20" Content="{x:Static p:Resources.DateAndTime}"/>
+            <DatePicker x:Name="datePicker" DisplayDateStart="{Binding Mode=OneWay, Source={x:Static sys:DateTime.Today}}" SelectedDateChanged="getAvailableTerms"/>
+            <ComboBox x:Name="availableTermsComboBox" Height="30" ItemsSource="{Binding Path=AvailableTerms}"/>
+            <Grid Margin="0,20,0,0" Height="30">
+                <Button Width="130" HorizontalAlignment="Left" Content="{x:Static p:Resources.Confirm}" Click="addOperation"/>
+                <Button Width="130" HorizontalAlignment="Right" Content="{x:Static p:Resources.Close}" Click="closeOperationDialog"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

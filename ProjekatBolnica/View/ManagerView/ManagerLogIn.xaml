@@ -1,0 +1,102 @@
+﻿<Window x:Class="ProjekatBolnica.ManagerView.ManagerLogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.ManagerView"
+        mc:Ignorable="d"
+        Title="ManagerLogIn" Height="800" Width="1280">
+    <Window.Resources>
+        <Color x:Key="Color1">#FFC7D8EA</Color>
+    </Window.Resources>
+    <Grid Background="#FF485A6C">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="609"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="26"/>
+            <ColumnDefinition Width="101"/>
+            <ColumnDefinition Width="99"/>
+            <ColumnDefinition Width="301"/>
+            <ColumnDefinition Width="532"/>
+            <ColumnDefinition Width="213"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar x:Name="toolBar1" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="40" Margin="-6,570,-2,-2" VerticalAlignment="Top" Width="1280" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}">
+            <ToolBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-3.165"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="1.078"/>
+                </TransformGroup>
+            </ToolBar.RenderTransform>
+        </ToolBar>
+        <TextBlock x:Name="textBlock1" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="34" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="1280" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+        <Button x:Name="button" Content="&lt;" HorizontalAlignment="Left" Height="34" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="25" Background="DimGray" FontSize="20" Grid.ColumnSpan="2" BorderBrush="DimGray"/>
+        <Button x:Name="button_Copy" Content="&gt;" HorizontalAlignment="Left" Height="34" Margin="14,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="25" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" RenderTransformOrigin="0.96,0.471" FontSize="20" Grid.Column="1" BorderBrush="DimGray"/>
+        <TextBox x:Name="textBox" Grid.ColumnSpan="4" Grid.Column="2" HorizontalAlignment="Left" Height="19" Margin="27,9,0,0" Grid.Row="1" TextWrapping="Wrap" Text="https://Hospital/LogInUser" VerticalAlignment="Top" Width="999" />
+        <Separator HorizontalAlignment="Left" Height="25" Margin="11,249,0,0" Grid.Row="2" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-6.589,2.474" FontSize="16" FontWeight="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" Grid.Column="2">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="85.974" Y="-311.01"/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Separator HorizontalAlignment="Left" Height="26" Margin="105,247,0,0" Grid.Row="2" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-6.589,2.474" FontSize="16" FontWeight="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" Grid.Column="5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="85.974" Y="-311.01"/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Calendar Grid.Column="5" HorizontalAlignment="Left" Height="27" Margin="10,571,0,0" Grid.Row="2" VerticalAlignment="Top" Width="175" Background="#FFB4B4B4">
+            <Calendar.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="DimGray" Offset="1"/>
+                </LinearGradientBrush>
+            </Calendar.BorderBrush>
+        </Calendar>
+        <Button x:Name="button1" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="45,7,0,0" Grid.Row="1" VerticalAlignment="Top" Width="25" Background="DimGray" BorderBrush="DimGray" Click="OpenManagerView">
+            <Image Source="Pictures/refresh.png" RenderTransformOrigin="7.325,3.725" Height="24"></Image>
+        </Button>
+        <Button x:Name="button2" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="78,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="37" Background="DimGray" Grid.ColumnSpan="2" BorderBrush="DimGray">
+            <Image Source="Pictures/home.png"></Image>
+        </Button>
+        <Button x:Name="button3"  Grid.Column="5" HorizontalAlignment="Left" Height="28" Margin="127,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="27" Background="DimGray" BorderBrush="DimGray">
+            <Image Source="Pictures/download.png" Height="18" RenderTransformOrigin="-0.273,2.023"></Image>
+        </Button>
+        <Button x:Name="button4" Grid.Column="5" HorizontalAlignment="Left" Height="28" Margin="169,2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="31" Background="DimGray" BorderBrush="DimGray">
+            <Image Source="Pictures/dots.png" Height="18"></Image>
+        </Button>
+        <Button x:Name="button5" Content="SRP" Grid.Column="4" HorizontalAlignment="Left" Height="28" Margin="462,574,0,0" Grid.Row="2" VerticalAlignment="Top" Width="48" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="16" BorderBrush="DimGray" />
+        <Button x:Name="button6" Grid.Column="4" HorizontalAlignment="Left" Margin="420,575,0,0" Grid.Row="2" VerticalAlignment="Top" Width="33" Height="28" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" BorderBrush="DimGray">
+            <Image  Source="Pictures/slide-up.png" RenderTransformOrigin="1.188,1.563"></Image>
+        </Button>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="354" Margin="108,11,0,0" Grid.Row="2" VerticalAlignment="Top" Width="560">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{DynamicResource Color1}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Separator Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="6" Margin="108,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="560"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="58" Margin="108,109,0,0" Grid.Row="1" VerticalAlignment="Top" Width="560" Grid.RowSpan="2" Fill="#FF9EB0C3"/>
+        <Image x:Name="image" Grid.Column="3" HorizontalAlignment="Left" Height="48" Margin="124,113,0,0" Grid.Row="1" VerticalAlignment="Top" Width="51" Source="Pictures/hospital.png" Grid.RowSpan="2"/>
+        <CheckBox x:Name="checkBox" Content="Stay signed in" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="167,277,0,0" Grid.Row="2" VerticalAlignment="Top" Width="184" FontSize="20" IsChecked="True" Grid.ColumnSpan="2" Background="#FFC7D8EA" BorderBrush="#FF121619"/>
+        <TextBox x:Name="inputUsername" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="167,81,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" FontSize="20"/>
+        <Button x:Name="button7" Content="Log In" Grid.Column="4" Height="32" Margin="191,277,239,0" Grid.Row="2" VerticalAlignment="Top" Background="#FF2D4E72" FontSize="20" Click="LogIn"/>
+        <PasswordBox x:Name="passwordBox" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="34" Margin="167,199,0,0" Grid.Row="2" VerticalAlignment="Top" Width="440" FontSize="20"/>
+        <Label x:Name="label" Content="Username" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="167,31,0,0" Grid.Row="2" VerticalAlignment="Top" Width="243" FontSize="20" BorderBrush="#FFC7D8EA" Background="#FFC7D8EA" Grid.ColumnSpan="2"/>
+        <Label x:Name="label2" Content="Password" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="167,147,0,0" Grid.Row="2" VerticalAlignment="Top" Width="243" FontSize="20" BorderBrush="#FFC7D8EA" Background="#FFC7D8EA" Grid.ColumnSpan="2"/>
+        <Label x:Name="label_Copy" Content="Hospital Healthy" Grid.Column="3" HorizontalAlignment="Left" Height="42" Margin="198,123,0,0" Grid.Row="1" VerticalAlignment="Top" Width="242" FontSize="20" BorderBrush="#FF9EB0C3" Background="#FF9EB0C3" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+    </Grid>
+</Window>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="ProjekatBolnica.View.DoctorView.OpenOperation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.View.DoctorView"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:p = "clr-namespace:ProjekatBolnica.Properties"
+        mc:Ignorable="d"
+        Title="OpenOperation" Height="650" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="dialogGrid">
+        <StackPanel Width="300">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Label FontSize="30" Content="{Binding Path=Operation.Patient.Name}" HorizontalAlignment="Center"/>
+                <Label FontSize="30" Content="{Binding Path=Operation.Patient.Surname}" HorizontalAlignment="Center"/>
+                <Label FontSize="20" Foreground="Gray" Content="{Binding Path=Operation.Patient.PersonalIDnumber}" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Label FontSize="20" Content="{x:Static p:Resources.Report2}"/>
+            <ScrollViewer MaxHeight="150">
+                <StackPanel Focusable="False">
+                    <TextBox x:Name="reportTextBox" TextWrapping="Wrap" Focusable="True" Height="100"/>
+                </StackPanel>
+            </ScrollViewer>
+            <Label FontSize="20" Content="{x:Static p:Resources.Medicines}"/>
+            <ListBox x:Name="allMedicine" ItemsSource="{Binding Path=Medicines}" Height="100" PreviewKeyDown="selectMedicine" GotKeyboardFocus="selectFirst"/>
+            <Label FontSize="20" Content="{x:Static p:Resources.Perscription}"/>
+            <ListBox x:Name="perscribedMedicine" ItemsSource="{Binding Path=PerscriptionMedicines}" MinHeight="30" MaxHeight="100" PreviewKeyDown="removeMedicine" GotKeyboardFocus="selectFirst"/>
+            <Label FontSize="20" Content="{x:Static p:Resources.PerscriptionValidity}"/>
+            <DatePicker x:Name="perscriptionEndDate" Height="30" Width="300" PreviewKeyDown="openCalendar" DisplayDateStart="{Binding Mode=OneWay, Source={x:Static sys:DateTime.Today}}"/>
+            <Grid Margin="0,20,0,0" Height="30">
+                <Button Width="130" HorizontalAlignment="Left" Content="{x:Static p:Resources.Confirm}" Click="confirmOperation"/>
+                <Button Width="130" HorizontalAlignment="Right" Content="{x:Static p:Resources.Close}" Click="closeOperationDialog"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

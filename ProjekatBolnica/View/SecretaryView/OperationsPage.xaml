@@ -1,0 +1,91 @@
+﻿<Window x:Class="ProjekatBolnica.SecretaryView.OperationsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.SecretaryView"
+        mc:Ignorable="d"
+        Title="Operations Page" Height="800" Width="1280" Background="Beige" WindowStartupLocation="CenterScreen" >
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF6EB2E8" Height="121" Margin="0,0,0,0">
+            <StackPanel Orientation="Vertical" Background="#FF6EB2E8">
+                <Button Click="clickAddOperation" Background="White" Width="102.4" Margin="2,10,2,5" Height="67">
+                    <Image x:Name="imageSurgery" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="55" Source="SecretaryPictures/surgery.png"/>
+                </Button>
+                <Label HorizontalAlignment="Center" Content="    Add operation" FontSize="15" Width="141" Height="38"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Background="#FF6EB2E8">
+                <Button Background="White" Width="102.4" Margin="2,10,2,5" Height="67" Click="editSelectedOperation">
+                    <Image x:Name="imageEditAppointment" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="55" Source="SecretaryPictures/edit.png"/>
+                </Button>
+                <Label HorizontalAlignment="Center" Content="    Edit operation" FontSize="15" Width="141" Height="38"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Background="#FF6EB2E8">
+                <Button Background="White" Width="102.4" Margin="2,10,2,5" Height="67" Click="deleteSelectedOperation">
+                    <Image x:Name="imageDeleteAppointment" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="55" Source="SecretaryPictures/delete.png"/>
+                </Button>
+                <Label HorizontalAlignment="Center" Content="   Delete operation" FontSize="15" Width="141" Height="38"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="27,3,0,0">
+                <StackPanel Orientation="Horizontal" Background="#FF6EB2E8" RenderTransformOrigin="0.755,0.505">
+                    <Label HorizontalAlignment="Center" Content="Enter the patient's name" FontSize="15" Height="38" Width="248"></Label>
+                    <TextBox Name="forsearch" Height="20" Width="150" FontSize="15" KeyUp="refreshPageWithTextBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Background="#FF6EB2E8" RenderTransformOrigin="0.755,0.505">
+                    <Label HorizontalAlignment="Center" Content="Enter the patient's surname" FontSize="15" Height="38" Width="248"></Label>
+                    <TextBox Name="forsearchSurname" Height="20" Width="150" FontSize="15" KeyUp="refreshPageWithTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Background="#FF6EB2E8" RenderTransformOrigin="0.755,0.505">
+                    <Label HorizontalAlignment="Center" Content="Enter the patient's personal number" FontSize="15" Height="38" Width="248"></Label>
+                    <TextBox Name="forsearchPersonal" Height="20" Width="150" FontSize="15" KeyUp="refreshPageWithTextBox"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="19,3,0,0">
+                <StackPanel Orientation="Horizontal" Background="#FF6EB2E8" RenderTransformOrigin="0.755,0.505">
+                    <Label HorizontalAlignment="Center" Content="Enter the doctor's name" FontSize="15" Height="38" Width="190"></Label>
+                    <TextBox Name="forsearchNameDoctor" Height="20" Width="150" FontSize="15" KeyUp="refreshPageWithTextBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Background="#FF6EB2E8" RenderTransformOrigin="0.755,0.505">
+                    <Label HorizontalAlignment="Center" Content="Enter the doctor's surname" FontSize="15" Height="38" Width="190"></Label>
+                    <TextBox Name="forsearchSurnameDoctor" Height="20" Width="150" FontSize="15" KeyUp="refreshPageWithTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Background="#FF6EB2E8" RenderTransformOrigin="0.755,0.505">
+                    <Label HorizontalAlignment="Center" Content="Select a date" FontSize="15" Height="38" Width="190"></Label>
+                    <DatePicker Name="forsearchDate" Height="25" Width="150" FontSize="15" KeyUp="refreshPageWithTextBox" SelectedDateChanged="forsearchDate_SelectedDateChanged" ></DatePicker>
+                </StackPanel>
+            </StackPanel>
+            <Image x:Name="imageSearch" Margin="4,30,10,10" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="55" Source="SecretaryPictures/search.png">
+                <Image.ToolTip>
+                    Enter data to see the filtered table
+                </Image.ToolTip>
+            </Image>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Background="Beige">
+            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" HorizontalAlignment="Center">
+                <Label HorizontalAlignment="Center" Content="Click to refresh the table" FontSize="15" Height="38" Margin="2"></Label>
+                <Button Name="refreshAppointment"  Background="White" Width="100" Margin="10,10,2,5" Height="35" Click="clickRefreshTableOperation">
+                    Refresh
+                </Button>
+            </StackPanel>
+            <Grid HorizontalAlignment="Center">
+                <DataGrid x:Name="defaultViewTable" ItemsSource="{Binding OperationList}" IsReadOnly="True" 
+                          SelectionMode="Single" AutoGenerateColumns="False" Grid.Row="0" 
+                          HorizontalAlignment="Left" Margin="20,20,20,0" FontSize="16" VerticalAlignment="Stretch">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn IsReadOnly="True" Header="Patient's name" Binding="{Binding Patient.Name}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Patient's surname" Binding="{Binding Patient.Surname}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Patient's personal number" Binding="{Binding Patient.PersonalIDnumber}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Date and time" Binding="{Binding DateAndTime}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Duration" Binding="{Binding Duration}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Room" Binding="{Binding Room.Id}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Doctor's name" Binding="{Binding Specialist.Name}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Doctor's surname" Binding="{Binding Specialist.Surname}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Doctor's username" Binding="{Binding Specialist.Username}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </StackPanel>
+    </DockPanel>
+</Window>

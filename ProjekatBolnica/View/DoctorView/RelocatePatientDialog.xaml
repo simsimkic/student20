@@ -1,0 +1,22 @@
+﻿<Window x:Class="ProjekatBolnica.View.DoctorView.RelocatePatientDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.View.DoctorView"
+        xmlns:p = "clr-namespace:ProjekatBolnica.Properties"
+        mc:Ignorable="d"
+        Title="RelocatePatientDialog" Height="300" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="dialogGrid">
+        <StackPanel HorizontalAlignment="Center" Width="300">
+            <Label FontSize="20" Content="{x:Static p:Resources.Room}"/>
+            <ComboBox x:Name="roomComboBox" Height="30" PreviewKeyDown="openComboBox" SelectionChanged="getBedsInRoom" ItemsSource="{Binding Path=RoomsForLaying}"/>
+            <Label FontSize="20" Content="{x:Static p:Resources.Bed}"/>
+            <ComboBox x:Name="bedComboBox" Height="30" PreviewKeyDown="openComboBox" ItemsSource="{Binding Path=Beds}"/>
+            <Grid Margin="0,20,0,0" Height="30">
+                <Button Width="130" HorizontalAlignment="Left" Content="{x:Static p:Resources.Confirm}" Click="relocatePatient"/>
+                <Button Width="130" HorizontalAlignment="Right" Content="{x:Static p:Resources.Close}" Click="closeRelocatePatientDialog"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

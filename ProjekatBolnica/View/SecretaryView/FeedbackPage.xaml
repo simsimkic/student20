@@ -1,0 +1,26 @@
+﻿<Window x:Class="ProjekatBolnica.SecretaryView.FeedbackPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjekatBolnica.SecretaryView"
+        mc:Ignorable="d"
+       Title="Feedback Page" Background="Beige" Height="450" Width="650">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0">
+            <Image x:Name="imageFeedback" Margin="53, 30" Height="49" Width="52" Source="SecretaryPictures/message.png"/>
+            <Label Content="Impressions:" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Width="316"></Label>
+        </StackPanel>
+        <TextBox Name="impressions" Background="White" Height="186" TextWrapping="Wrap" Margin="53,0,53,0" FontSize="20">
+            <TextBox.ToolTip>
+                Enter your impressions here
+            </TextBox.ToolTip>
+        </TextBox>
+        <StackPanel Orientation="Horizontal">
+            <Button Background="White" Width="68" Margin="200,50,30,5" Height="38" Content="Cancel" Click="cancelFeedback"/>
+            <Button Background="White" Width="68" Margin="60,50,30,5" Height="38" Content="Send" Click="sendFeedback"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
+
+
